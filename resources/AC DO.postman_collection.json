@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "de86daa8-2297-47af-a823-7e5e7a3c6100",
+		"name": "AC DO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15482760",
+		"_collection_link": "https://cd-inet-dc.postman.co/workspace/CD%2FINET%2FDC-Workspace~a16d3c06-496c-4382-8b51-73390bc27645/collection/15482760-de86daa8-2297-47af-a823-7e5e7a3c6100?action=share&source=collection_link&creator=15482760"
+	},
+	"item": [
+		{
+			"name": "TOKEN PREPROD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// access response body\r",
+							"// use .json() for JSON responses\r",
+							"let responseJSON = pm.response.json();\r",
+							"\r",
+							"// set the response as a variable\r",
+							"pm.collectionVariables.set('instance-url', responseJSON.instance_url);\r",
+							"pm.collectionVariables.set('access-token', responseJSON.access_token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-secure-preprod.forms.awsmpsa.com/oauth/v2/token?client_id=5fae4f678c1b6d006427f613_3p5we9of3v6s84socgcwwocgcowo0k08c4ok8ok8cow8ws0g0g&client_secret=3b5rf523ro4k44wg0cs0ock4goc0o84kosc4gkgwcs08c0k0ss&grant_type=password&username=ACDOPP&password=S8hT9vm5",
+					"protocol": "https",
+					"host": [
+						"api-secure-preprod",
+						"forms",
+						"awsmpsa",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "5fae4f678c1b6d006427f613_3p5we9of3v6s84socgcwwocgcowo0k08c4ok8ok8cow8ws0g0g"
+						},
+						{
+							"key": "client_secret",
+							"value": "3b5rf523ro4k44wg0cs0ock4goc0o84kosc4gkgwcs08c0k0ss"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "ACDOPP"
+						},
+						{
+							"key": "password",
+							"value": "S8hT9vm5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LEADS PREPROD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Flatten JSON function\r",
+							"function flattenJson(jsonData, parentKey = '') {\r",
+							"    let flattenedData = {};\r",
+							"\r",
+							"    for (let key in jsonData) {\r",
+							"        let newKey = parentKey ? parentKey + '.' + key : key;\r",
+							"\r",
+							"        if (typeof jsonData[key] === 'object' && !Array.isArray(jsonData[key])) {\r",
+							"            const nestedData = flattenJson(jsonData[key], newKey);\r",
+							"            flattenedData = { ...flattenedData, ...nestedData };\r",
+							"        } else if (Array.isArray(jsonData[key])) {\r",
+							"            jsonData[key].forEach((item, index) => {\r",
+							"                const nestedData = flattenJson(item, `${newKey}[${index}]`);\r",
+							"                flattenedData = { ...flattenedData, ...nestedData };\r",
+							"            });\r",
+							"        } else {\r",
+							"            flattenedData[newKey] = jsonData[key];\r",
+							"        }\r",
+							"    }\r",
+							"\r",
+							"    return flattenedData;\r",
+							"}\r",
+							"\r",
+							"// Convert JSON response to CSV and save to file\r",
+							"pm.test(\"Convert JSON response to CSV\", function () {\r",
+							"    const responseJson = pm.response.json().message;\r",
+							"    let csvData = '';\r",
+							"\r",
+							"    if (Array.isArray(responseJson)) {\r",
+							"        // Extract headers from the first item\r",
+							"        const headers = Object.keys(flattenJson(responseJson[0]));\r",
+							"\r",
+							"        // Write headers to CSV\r",
+							"        csvData += headers.join(',') + '\\n';\r",
+							"\r",
+							"        // Write data rows to CSV\r",
+							"        responseJson.forEach(item => {\r",
+							"            const flattenedItem = flattenJson(item);\r",
+							"            const rowData = headers.map(header => {\r",
+							"                const value = flattenedItem[header] !== undefined ? flattenedItem[header] : '';\r",
+							"                return value.toString().replace(',','#');\r",
+							"            }).join(',');\r",
+							"            csvData += rowData + '\\n';\r",
+							"        });\r",
+							"    } else {\r",
+							"        // If responseJson is not an array, flatten it directly\r",
+							"        const flattenedData = flattenJson(responseJson);\r",
+							"        const headers = Object.keys(flattenedData);\r",
+							"        csvData += headers.join(',') + '\\n';\r",
+							"\r",
+							"        const rowData = headers.map(header => {\r",
+							"            const value = flattenedData[header] !== undefined ? flattenedData[header] : '';\r",
+							"            return value.toString().replace(',','#');\r",
+							"        }).join(',');\r",
+							"        csvData += rowData + '\\n';\r",
+							"    }\r",
+							"\r",
+							"    // Set CSV data to visualization tab\r",
+							"    const htmlTable = `\r",
+							"        <style>\r",
+							"            table {\r",
+							"                border-collapse: collapse;\r",
+							"                width: 100%;\r",
+							"            }\r",
+							"            th, td {\r",
+							"                border: 1px solid #dddddd;\r",
+							"                text-align: left;\r",
+							"                padding: 8px;\r",
+							"            }\r",
+							"            th {\r",
+							"                background-color: #f2f2f2;\r",
+							"            }\r",
+							"        </style>\r",
+							"        <table>\r",
+							"            <thead>\r",
+							"                <tr>${csvData.split('\\n')[0].split(',').map(header => `<th>${header}</th>`).join('')}</tr>\r",
+							"            </thead>\r",
+							"            <tbody>\r",
+							"                ${csvData.split('\\n').slice(1).map(row => `<tr>${row.split(',').map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}\r",
+							"            </tbody>\r",
+							"        </table>\r",
+							"    `;\r",
+							"    pm.visualizer.set(htmlTable, { type: 'html' });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"startDate\": \"2025-05-06T01:00:00.843+00:00\",\r\n  \"endDate\": \"2025-05-06T23:59:59.843+00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-secure-preprod.forms.awsmpsa.com/formsv3/api/leads",
+					"protocol": "https",
+					"host": [
+						"api-secure-preprod",
+						"forms",
+						"awsmpsa",
+						"com"
+					],
+					"path": [
+						"formsv3",
+						"api",
+						"leads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOKEN PROD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// access response body\r",
+							"// use .json() for JSON responses\r",
+							"let responseJSON = pm.response.json();\r",
+							"\r",
+							"// set the response as a variable\r",
+							"pm.collectionVariables.set('instance-url', responseJSON.instance_url);\r",
+							"pm.collectionVariables.set('access-token', responseJSON.access_token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-secure.forms.awsmpsa.com/oauth/v2/token?client_id=5f7f179e7714a1005d204b43_2w88uv9394aok4g8gs0ccc4w4gwsskowck0gs0oo0sggw0kog0&client_secret=619ffmx8sn0g8ossso44wwok8scgoww00s8sogkw8w08cgc0wg&grant_type=password&username=ACDOPR&password=S8LzRx6G",
+					"protocol": "https",
+					"host": [
+						"api-secure",
+						"forms",
+						"awsmpsa",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "5f7f179e7714a1005d204b43_2w88uv9394aok4g8gs0ccc4w4gwsskowck0gs0oo0sggw0kog0"
+						},
+						{
+							"key": "client_secret",
+							"value": "619ffmx8sn0g8ossso44wwok8scgoww00s8sogkw8w08cgc0wg"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "ACDOPR"
+						},
+						{
+							"key": "password",
+							"value": "S8LzRx6G"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LEADS PROD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Flatten JSON function\r",
+							"function flattenJson(jsonData, parentKey = '') {\r",
+							"    let flattenedData = {};\r",
+							"\r",
+							"    for (let key in jsonData) {\r",
+							"        let newKey = parentKey ? parentKey + '.' + key : key;\r",
+							"\r",
+							"        if (typeof jsonData[key] === 'object' && !Array.isArray(jsonData[key])) {\r",
+							"            const nestedData = flattenJson(jsonData[key], newKey);\r",
+							"            flattenedData = { ...flattenedData, ...nestedData };\r",
+							"        } else if (Array.isArray(jsonData[key])) {\r",
+							"            jsonData[key].forEach((item, index) => {\r",
+							"                const nestedData = flattenJson(item, `${newKey}[${index}]`);\r",
+							"                flattenedData = { ...flattenedData, ...nestedData };\r",
+							"            });\r",
+							"        } else {\r",
+							"            flattenedData[newKey] = jsonData[key];\r",
+							"        }\r",
+							"    }\r",
+							"\r",
+							"    return flattenedData;\r",
+							"}\r",
+							"\r",
+							"// Convert JSON response to CSV and save to file\r",
+							"pm.test(\"Convert JSON response to CSV\", function () {\r",
+							"    const responseJson = pm.response.json().message;\r",
+							"    let csvData = '';\r",
+							"\r",
+							"    if (Array.isArray(responseJson)) {\r",
+							"        // Extract headers from the first item\r",
+							"        const headers = Object.keys(flattenJson(responseJson[0]));\r",
+							"\r",
+							"        // Write headers to CSV\r",
+							"        csvData += headers.join(',') + '\\n';\r",
+							"\r",
+							"        // Write data rows to CSV\r",
+							"        responseJson.forEach(item => {\r",
+							"            const flattenedItem = flattenJson(item);\r",
+							"            const rowData = headers.map(header => {\r",
+							"                const value = flattenedItem[header] !== undefined ? flattenedItem[header] : '';\r",
+							"                return value.toString().replace(',','#');\r",
+							"            }).join(',');\r",
+							"            csvData += rowData + '\\n';\r",
+							"        });\r",
+							"    } else {\r",
+							"        // If responseJson is not an array, flatten it directly\r",
+							"        const flattenedData = flattenJson(responseJson);\r",
+							"        const headers = Object.keys(flattenedData);\r",
+							"        csvData += headers.join(',') + '\\n';\r",
+							"\r",
+							"        const rowData = headers.map(header => {\r",
+							"            const value = flattenedData[header] !== undefined ? flattenedData[header] : '';\r",
+							"            return value.toString().replace(',','#');\r",
+							"        }).join(',');\r",
+							"        csvData += rowData + '\\n';\r",
+							"    }\r",
+							"\r",
+							"    // Set CSV data to visualization tab\r",
+							"    const htmlTable = `\r",
+							"        <style>\r",
+							"            table {\r",
+							"                border-collapse: collapse;\r",
+							"                width: 100%;\r",
+							"            }\r",
+							"            th, td {\r",
+							"                border: 1px solid #dddddd;\r",
+							"                text-align: left;\r",
+							"                padding: 8px;\r",
+							"            }\r",
+							"            th {\r",
+							"                background-color: #f2f2f2;\r",
+							"            }\r",
+							"        </style>\r",
+							"        <table>\r",
+							"            <thead>\r",
+							"                <tr>${csvData.split('\\n')[0].split(',').map(header => `<th>${header}</th>`).join('')}</tr>\r",
+							"            </thead>\r",
+							"            <tbody>\r",
+							"                ${csvData.split('\\n').slice(1).map(row => `<tr>${row.split(',').map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}\r",
+							"            </tbody>\r",
+							"        </table>\r",
+							"    `;\r",
+							"    pm.visualizer.set(htmlTable, { type: 'html' });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"startDate\": \"2025-05-01T01:00:00.843+00:00\",\r\n  \"endDate\": \"2025-05-01T23:59:59.843+00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-secure.forms.awsmpsa.com/formsv3/api/leads",
+					"protocol": "https",
+					"host": [
+						"api-secure",
+						"forms",
+						"awsmpsa",
+						"com"
+					],
+					"path": [
+						"formsv3",
+						"api",
+						"leads"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "instance-url",
+			"value": ""
+		},
+		{
+			"key": "access-token",
+			"value": ""
+		}
+	]
+}

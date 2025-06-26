@@ -1,0 +1,275 @@
+[
+  {
+    "gitId": "MTc0OTA0MjMyMExyRVAy",
+    "creationDate": "2025-06-04T13:05:20+00:00",
+    "dispatchDate": "2025-06-13T14:07:19+00:00",
+    "leadStatus": "DISPATCHED",
+    "leadBatchTime": "1749042361",
+    "applicationSourceCode": "GLOBAL_FORMS",
+    "applicationSourceName": "GLOBAL_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250604112439-4004",
+      "deviceType": "1",
+      "gaClientId": "823286448.1746790782",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "requestType": "1",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RATD",
+      "customer": {
+        "civility": "2",
+        "firstname": "Jody",
+        "lastname": "Test",
+        "email": "jody@test.com",
+        "personalMobilePhone": "07775825206"
+      },
+      "interestProduct": {
+        "lcdv": "1CLE",
+        "vehicleType": "VP",
+        "brochuresList": []
+      },
+      "dealers": [{ "geoSiteCode": "CDO005S" }],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": false },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": true }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RTD.88ed8123-ea26-4fdf-95a0-95843575e0fc"
+        }
+      ]
+    }
+  },
+  {
+    "gitId": "MTc0OTAzNjM3NEMyVHNV",
+    "creationDate": "2025-06-04T11:26:14+00:00",
+    "dispatchDate": "2025-06-13T14:07:19+00:00",
+    "leadStatus": "DISPATCHED",
+    "leadBatchTime": "1749036481",
+    "applicationSourceCode": "GLOBAL_FORMS",
+    "applicationSourceName": "GLOBAL_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250603134838-4007",
+      "deviceType": "1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+      "requestType": "4",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RAC",
+      "comments": "TEST",
+      "customer": {
+        "civility": "3",
+        "firstname": "John",
+        "lastname": "Example",
+        "email": "john@example.com",
+        "personalMobilePhone": "0987654321"
+      },
+      "dealers": [],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": true },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RC.72c08750-bd94-4417-9d57-3c0731bec76f"
+        },
+        { "fieldName": "inquiryType", "fieldValue": "FINSERV" }
+      ]
+    }
+  },
+  {
+    "gitId": "MTc0OTAzNjM1OGZkdWp0",
+    "creationDate": "2025-06-04T11:25:58+00:00",
+    "dispatchDate": "2025-06-13T14:07:19+00:00",
+    "leadStatus": "DISPATCHED",
+    "leadBatchTime": "1749036362",
+    "applicationSourceCode": "GLOBAL_FORMS",
+    "applicationSourceName": "GLOBAL_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250604112442-4006",
+      "deviceType": "1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+      "requestType": "2",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RAQ",
+      "customer": {
+        "civility": "2",
+        "firstname": "John",
+        "lastname": "Example",
+        "email": "john@example.com",
+        "personalMobilePhone": "0987654321"
+      },
+      "interestProduct": {
+        "lcdv": "1CSC",
+        "vehicleType": "VP",
+        "brochuresList": []
+      },
+      "dealers": [{ "geoSiteCode": "CDO005S" }],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": false },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RAQ.ce22b4d8-5bed-461e-b5e6-d5e5d1ec9ec5"
+        }
+      ]
+    }
+  },
+  {
+    "gitId": "MTc0OTAzNjM0NHZJUTl0",
+    "creationDate": "2025-06-04T11:25:44+00:00",
+    "dispatchDate": "2025-06-13T14:07:19+00:00",
+    "leadStatus": "DISPATCHED",
+    "leadBatchTime": "1749036362",
+    "applicationSourceCode": "GLOBAL_FORMS",
+    "applicationSourceName": "GLOBAL_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250604112439-4004",
+      "deviceType": "1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+      "requestType": "1",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RATD",
+      "customer": {
+        "civility": "3",
+        "firstname": "John",
+        "lastname": "Example",
+        "email": "john@example.com",
+        "personalMobilePhone": "0987654321"
+      },
+      "interestProduct": {
+        "lcdv": "1CCE",
+        "vehicleType": "VP",
+        "brochuresList": []
+      },
+      "dealers": [{ "geoSiteCode": "CDO005S" }],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": false },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RTD.65c17d9d-5dca-40e2-85e9-28b860dc2824"
+        }
+      ]
+    }
+  },
+  {
+    "gitId": "MTc0ODk1ODUzNHE3R2xt",
+    "creationDate": "2025-06-03T13:48:54+00:00",
+    "dispatchDate": "2025-06-13T14:07:19+00:00",
+    "leadStatus": "DISPATCHED",
+    "leadBatchTime": "1748958601",
+    "applicationSourceCode": "GLOBAL_FORMS",
+    "applicationSourceName": "GLOBAL_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250603134838-4007",
+      "deviceType": "1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0",
+      "requestType": "4",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RAC",
+      "comments": "test",
+      "customer": {
+        "civility": "2",
+        "firstname": "John",
+        "lastname": "Example",
+        "email": "john@example.com",
+        "personalMobilePhone": "0987654321"
+      },
+      "dealers": [],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": true },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RC.edb26b0f-aa1f-497e-9d64-34017c072dc4"
+        },
+        { "fieldName": "inquiryType", "fieldValue": "SHOP" }
+      ]
+    }
+  },
+  {
+    "gitId": "MTc1MDk2ODc4N3JjbU5T",
+    "creationDate": "2025-06-26T20:13:07+00:00",
+    "leadStatus": "INITIALIZED",
+    "applicationSourceCode": "STELLANTIS_FORMS",
+    "applicationSourceName": "STELLANTIS_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250603134838-4007",
+      "deviceType": "1",
+      "gaClientId": "80616699.1746195196",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "requestType": "4",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RAC",
+      "comments": "Esto es una prueba",
+      "customer": {
+        "civility": "1",
+        "firstname": "Ti",
+        "lastname": "Grupo Avant",
+        "email": "testmail@grupoavant.com.do",
+        "personalMobilePhone": "8096839933"
+      },
+      "dealers": [],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": true },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RC.c33891e8-dacb-492f-a194-ec00887dbac2"
+        },
+        { "fieldName": "inquiryType", "fieldValue": "WEB" }
+      ]
+    }
+  }
+]
