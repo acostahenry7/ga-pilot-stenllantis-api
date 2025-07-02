@@ -1,3 +1,13 @@
+const carCodes = {
+  "1CSC": "NUEVO SUV AIRCROSS",
+  "1CCE": "C5 AIRCROSS",
+  "2CK9": "BERLINGO MULTISPACE",
+  "1CK9": "BERLINGO VAN",
+  "1CLP": "C4 CACTUS",
+  "2CXE": "JUMPER",
+  "2CK0": "JUMPY",
+};
+
 const generateUrlParams = (obj) => {
   let params = "";
 
@@ -10,8 +20,17 @@ const generateUrlParams = (obj) => {
   return params;
 };
 
+const getModelByCode = (code) => {
+  if (!code) {
+    console.log("No model was found");
+    return "";
+  }
+  return carCodes[code];
+};
+
 module.exports = {
   generateUrlParams,
+  getModelByCode,
 };
 
 // console.log(

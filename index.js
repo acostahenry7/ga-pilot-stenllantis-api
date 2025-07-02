@@ -5,7 +5,7 @@ const {
   credentials: { clientId, clientSecret, grantType, username, password },
   pilotParams,
 } = require("./config");
-const { generateUrlParams } = require("./utils");
+const { generateUrlParams, getModelByCode } = require("./utils");
 const authURL = "https://api-secure.forms.awsmpsa.com/oauth/v2/token";
 const stellantisUrl = "https://api-secure.forms.awsmpsa.com/formsv3/api/leads";
 const pilotUrl = "https://api.pilotsolution.net/webhooks/welcome.php";
@@ -15,6 +15,11 @@ const httpsAgent = new https.Agent({
   key: fs.readFileSync("./key.pk"),
   rejectUnauthorized: false,
 });
+
+const subOriginCodes = {
+  sd: "FJ43VEW8D7BDJESQO",
+  st: "FUUMONS9V11SZUZ39",
+};
 
 //AUTHENTICATION (This gets the Bearer Token)
 const getToken = async () => {
@@ -59,6 +64,7 @@ const fetchData = async (token) => {
 };
 
 //POST OBJECT TO DESTINATION (This creates the Lead instance into Pilot CRM)
+const stCodes = ["CDO005S", "CDO002S"];
 const postData = async (leads) => {
   console.log(`Uploading leads...`);
   const processedLeads = {
@@ -68,6 +74,11 @@ const postData = async (leads) => {
   for (let l of leads) {
     let params = {
       ...pilotParams,
+      pilot_suborigin_id: stCodes.some(
+        (item) => item == l.leadData.dealers[0]?.geoSiteCode
+      )
+        ? subOriginCodes.st
+        : subOriginCodes.sd,
       pilot_firstname: l.leadData.customer.firstname,
       pilot_lastname: l.leadData.customer.lastname,
       pilot_email: l.leadData.customer.email,
@@ -75,6 +86,9 @@ const postData = async (leads) => {
       pilot_notes: l.leadData.comments || "",
       pilot_notificacions_opt_in_consent_flag:
         l.leadData.consents?.some((c) => c.consentValue == true) ?? false,
+      pilot_product_of_interest: getModelByCode(
+        l.leadData.interestProduct.lcdv
+      ),
     };
 
     let url = `${pilotUrl}${generateUrlParams(params)}`;

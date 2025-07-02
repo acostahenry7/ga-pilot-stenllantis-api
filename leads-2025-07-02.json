@@ -1,0 +1,49 @@
+[
+  {
+    "gitId": "MTc1MTQ4NTc2MGtlVFJp",
+    "creationDate": "2025-07-02T19:49:20+00:00",
+    "dispatchDate": "2025-07-02T19:49:26+00:00",
+    "leadStatus": "DISPATCHED",
+    "applicationSourceCode": "STELLANTIS_FORMS",
+    "applicationSourceName": "STELLANTIS_FORMS",
+    "leadData": {
+      "leadType": "1",
+      "leadLabel": "FP-AC-DO-es-20250623134637-4006",
+      "deviceType": "1",
+      "gaClientId": "80616699.1746195196",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "requestType": "2",
+      "customerType": "1",
+      "brand": "AC",
+      "country": "DO",
+      "language": "es",
+      "isOMNI": "0",
+      "activity": "VN",
+      "marketingCode": "ACDO_RAQ",
+      "customer": {
+        "civility": "1",
+        "firstname": "Grupo",
+        "lastname": "Avant Test",
+        "email": "testmail@grupoavant.com.do",
+        "personalMobilePhone": "8096839933"
+      },
+      "interestProduct": {
+        "lcdv": "1CSC",
+        "vehicleType": "VP",
+        "brochuresList": []
+      },
+      "dealers": [{ "geoSiteCode": "CDO005S" }],
+      "consents": [
+        { "consentName": "consentEmail", "consentValue": true },
+        { "consentName": "consentSMS", "consentValue": false },
+        { "consentName": "consentPhone", "consentValue": false }
+      ],
+      "otherFields": [
+        {
+          "fieldName": "leadId",
+          "fieldValue": "D1.RAQ.66c433df-ae51-4038-b621-896ad992d526"
+        }
+      ]
+    }
+  }
+]
