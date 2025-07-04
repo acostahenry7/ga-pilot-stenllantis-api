@@ -15,7 +15,7 @@ const httpsAgent = new https.Agent({
     "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api/cert.cer"
   ),
   key: fs.readFileSync(
-    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-apikey.pk"
+    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api/key.pk"
   ),
   rejectUnauthorized: false,
 });
