@@ -11,8 +11,12 @@ const stellantisUrl = "https://api-secure.forms.awsmpsa.com/formsv3/api/leads";
 const pilotUrl = "https://api.pilotsolution.net/webhooks/welcome.php";
 
 const httpsAgent = new https.Agent({
-  cert: fs.readFileSync("./cert.cer"),
-  key: fs.readFileSync("./key.pk"),
+  cert: fs.readFileSync(
+    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api/cert.cer"
+  ),
+  key: fs.readFileSync(
+    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-apikey.pk"
+  ),
   rejectUnauthorized: false,
 });
 
