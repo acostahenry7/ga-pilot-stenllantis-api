@@ -9,14 +9,12 @@ const { generateUrlParams, getModelByCode } = require("./utils");
 const authURL = "https://api-secure.forms.awsmpsa.com/oauth/v2/token";
 const stellantisUrl = "https://api-secure.forms.awsmpsa.com/formsv3/api/leads";
 const pilotUrl = "https://api.pilotsolution.net/webhooks/welcome.php";
+const serverPath =
+  "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api";
 
 const httpsAgent = new https.Agent({
-  cert: fs.readFileSync(
-    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api/cert.cer"
-  ),
-  key: fs.readFileSync(
-    "/var/www/grupoavant.com.do/STELLANTINS_PILOT_MIDDLEWARE/ga-pilot-stenllantis-api/key.pk"
-  ),
+  cert: fs.readFileSync(`${__dirname}/cert.cer`),
+  key: fs.readFileSync(`${__dirname}/key.pk`),
   rejectUnauthorized: false,
 });
 
@@ -115,12 +113,15 @@ const postData = async (leads) => {
 //COMPARE TO LOCAL DATA
 const validateNewLeads = (leads, file) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(file, (err, data) => {
+    fs.readFile(`${__dirname}/data/${file}`, (err, data) => {
       if (err) {
+        console.log(err);
+
         reject(err);
       }
 
       const localLeads = JSON.parse(data);
+
       const newLeads = leads.filter(
         (nl) => localLeads.some((lcl) => lcl.gitId == nl.gitId) == false
       );
@@ -134,7 +135,7 @@ const validateNewLeads = (leads, file) => {
 
 const createJsonFile = (name, data) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(`${name}`, JSON.stringify(data), (err) => {
+    fs.writeFile(`${__dirname}/data/${name}`, JSON.stringify(data), (err) => {
       if (err) {
         console.error("Error writing file:", err);
         reject();
@@ -169,7 +170,7 @@ getToken()
         }
 
         //Validate if file doesn't exists
-        if (!fs.existsSync(filename)) {
+        if (!fs.existsSync(`${__dirname}/data/${filename}`)) {
           await createJsonFile(filename, res.data.message);
           postData(res.data.message);
         } else {
